@@ -1,0 +1,15 @@
+[Unit]
+Description=2359 start wrapper
+After=network-online.target
+
+[Service]
+ExecStart=/home/pi/init_wrapper.ksh start  >> /home/pi/startup_shutdown.log 2>&1 &
+ExecStop=/home/pi/init_wrapper.ksh stop  >> /home/pi/startup_shutdown.log 2>&1
+
+Type=forking
+#Restart=never
+RemainAfterExit=true
+TimeoutSec=600
+[Install]
+WantedBy=multi-user.target graphical.target
+
